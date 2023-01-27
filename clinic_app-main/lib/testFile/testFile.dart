@@ -1,4 +1,8 @@
+import 'package:clinic_app/core/images/images.dart';
+import 'package:clinic_app/testFile/tabbartest.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class TabTest extends StatefulWidget {
   const TabTest({super.key});
@@ -8,11 +12,24 @@ class TabTest extends StatefulWidget {
 }
 
 class _TabTestState extends State<TabTest> {
+  double rating = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Image.asset(
+            AppImgaes.car,
+            width: 30,
+            height: 28,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
           title: Center(child: Text('tab')),
           bottom: TabBar(tabs: [
@@ -32,11 +49,26 @@ class _TabTestState extends State<TabTest> {
             Container(
               child: Expanded(
                 child: TabBarView(children: [
-                  Center(child: Text('page1')),
-                  
-                   Center(child: Text('page2')),
-                    Center(child: Text('page3'),),
-                  ]),
+                  Center(child: Text('${rating}')),
+                  Center(
+                    child: RatingBar.builder(
+                      minRating: 1,
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.orange,
+                      ),
+                      onRatingUpdate: (rating) => setState(() {
+                        this.rating = rating;
+                      }),
+                    ),
+                  ),
+                  // RatingBar.builder()
+                  // Center(child: Text('page3'),),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: TextField(),
+                  )
+                ]),
               ),
             )
           ],
@@ -99,5 +131,43 @@ class _TestTwoState extends State<TestTwo> {
     //  ],
     //);
     //);
+  }
+}
+
+// class TestTabbar extends StatelessWidget {
+//   const TestTabbar({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DefaultTabController(
+//       length: 3,
+//       child: Scaffold(
+//         appBar: AppBar(
+//           bottom: TabBar(tabs: [
+//             Text('1'),
+//             Text('2'),
+//             Text('3'),
+//           ]),
+//         ),
+//         body: TabBarView(children: [
+//           Icon(Icons.home),
+//           Icon(Icons.home),
+//           Icon(Icons.home),
+//           ]),
+//       ),
+//     );
+//   }
+// }
+
+
+class Tabbartest extends StatelessWidget {
+  const Tabbartest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TestTabbar(),
+    );
   }
 }

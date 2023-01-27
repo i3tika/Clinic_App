@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../profile_screen/widgets/doctors_card.dart';
+import 'doctor_info.dart';
 
 class DoctorsScreen extends StatelessWidget {
   DoctorsScreen({super.key});
@@ -30,12 +31,36 @@ class DoctorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text('Hello doctor'),),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text(
+          'Доктора',
+          style: AppFonts.w700s34,
+        ),
+        elevation: 0,
+        backgroundColor: AppColors.white,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.home,
+            ),
+            color: AppColors.black,
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: TextField(),
+                ),
+              ),
               //   ListView.builder(
               //   itemCount: numbers.length,
               //   shrinkWrap: true,
@@ -47,11 +72,44 @@ class DoctorsScreen extends StatelessWidget {
               // ),
               // DoctorsCard(img: AppImgaes.bell, prof: 'Стамотлого', number: 1, name: 'Budeshov Tiek', comm: '4',),
               // DoctorsCard(img: AppImgaes.car, prof: 'Стамотлого', number: 2, name: 'kurasaki Akira', comm: '16',),
-              Container(
-                height: 253,
-                width: 375,
-                color: AppColors.lightGrey,
-              ),
+              // Container(
+              //   height: 253,
+              //   width: double.infinity,
+              //   color: AppColors.white,
+              //   // child: Column(children: [Padding(
+              //   //   padding: const EdgeInsets.only(left: 16,bottom: 60),
+              //   //   child: Text('Доктора',style: AppFonts.w700s34,),
+              //   // ),
+              //   // Padding(
+              //   //   padding: const EdgeInsets.only(left: 175,bottom: 65),
+              //   //   child: IconButton(onPressed: (){}, icon: Icon(Icons.password)),
+              //   // ),
+              //   //   // Column(children: [Row(children: [Padding(
+              //   //   //   padding: const EdgeInsets.all(5),
+              //   //   //   child: TextField(),
+              //   //   // )],)],)
+              //   //   Column(children: [Padding(
+              //   //     padding: const EdgeInsets.only(top: 75,left: 78),
+              //   //     child: Text('data'),
+              //   //   )],)
+              //   // ],
+              //   // ),
+
+              //   child: Column(children: [Row(
+              //     children: [
+              //       Padding(
+              //         padding: const EdgeInsets.only(left: 16,top: 60),
+              //         child: Text('Доктора',style: AppFonts.w700s34,),
+              //       ),
+              //       Padding(
+              //     padding: const EdgeInsets.only(left: 175,top: 70),
+              //     child: IconButton(onPressed: (){}, icon: Icon(Icons.home)),
+              //   ),
+              //     ],
+
+              //   ),],),
+
+              // ),
               DoctorsCard(
                 img: AppImgaes.doctor,
                 prof: 'Кардиолог',
@@ -60,13 +118,19 @@ class DoctorsScreen extends StatelessWidget {
                 comm: '12',
                 star: '5.9',
               ),
-              DoctorsCard(
-                img: AppImgaes.doctor1,
-                prof: 'Кардиолог',
-                number: 2,
-                name: 'Чынгыз Акылбеков',
-                comm: '5',
-                star: '9',
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DcorotrProfil()));
+                },
+                child: DoctorsCard(
+                  img: AppImgaes.doctor1,
+                  prof: 'Кардиолог',
+                  number: 2,
+                  name: 'Чынгыз Акылбеков',
+                  comm: '5',
+                  star: '9',
+                ),
               ),
               DoctorsCard(
                 img: AppImgaes.doctor2,

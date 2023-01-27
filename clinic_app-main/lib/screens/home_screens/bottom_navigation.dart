@@ -10,6 +10,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../testFile/testFile.dart';
+import '../article_screen/article_screen.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
@@ -30,11 +33,12 @@ class BottomNavBar extends StatefulWidget {
 
 List<Widget> screens = [
   DoctorsScreen(),
-  Text('index 1'),
+  ArticleScreens(),
   Text('index 2'),
-  ProfileScreen(
-      // prefs: prefs,
-      ),
+  Tabbartest(),
+  // ProfileScreen(
+  //     // prefs: prefs,
+  //     ),
 ];
 
 int _selctedIndex = 0;
@@ -46,6 +50,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(
         height: 64,
@@ -108,6 +113,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 color: _unSelectedColor,
               ),
               label: 'Мои доктора'),
+              
           BottomNavigationBarItem(
               icon: Image.asset(
                 AppImgaes.user,
